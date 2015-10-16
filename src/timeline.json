@@ -1,0 +1,84 @@
+{
+   "basics": {
+      "name": "Alexey Nabrodov",
+      "label": null,
+      "picture": "https://s3.amazonaws.com/resumup-static/photos/250637/json/original/Nom_nom_kitty_by_ideea.png?1445014659",
+      "email": "averrin@gmail.com",
+      "phone": "+79811221505",
+      "website": "averr.in",
+      "summary": null,
+      "profiles": []
+   },
+   "work": [
+      {
+         "company": "Zodiac Interactive",
+         "position": "Senior Developer",
+         "website": "zodiac.tv",
+         "startDate": "2015-01-01",
+         "endDate": null,
+         "summary": "Senior Developer",
+         "highlights": []
+      },
+      {
+         "company": "Crypto",
+         "position": "Senior Developer",
+         "website": "",
+         "startDate": "2012-07-01",
+         "endDate": "2015-01-01",
+         "summary": "Software Lead",
+         "highlights": []
+      },
+      {
+         "company": "NP SRO MOOZHS",
+         "position": "IT Leading Specialist",
+         "website": "",
+         "startDate": "2010-07-01",
+         "endDate": "2011-05-01",
+         "summary": "CRM developing, leading project",
+         "highlights": []
+      },
+      {
+         "company": "Interzet",
+         "position": "Developer",
+         "website": "",
+         "startDate": "2011-05-01",
+         "endDate": "2012-06-01",
+         "summary": "CRM developing, leading project",
+         "highlights": []
+      },
+      {
+         "company": "Areal-Trans",
+         "position": "System administrator",
+         "website": "",
+         "startDate": "2009-06-01",
+         "endDate": "2010-07-01",
+         "summary": "System Administration",
+         "highlights": []
+      },
+      {
+         "company": "Stack",
+         "position": "System Engineer",
+         "website": "",
+         "startDate": "2008-12-01",
+         "endDate": "2009-06-01",
+         "summary": "Visiting computer help",
+         "highlights": []
+      }
+   ],
+   "education": [
+      {
+         "institution": "Saint-Petersburg State University",
+         "area": "Economics",
+         "studyType": "College",
+         "startDate": "2006-09-01",
+         "endDate": "2011-07-01",
+         "gpa": "",
+         "courses": []
+      }
+   ],
+   "awards": [],
+   "publications": [],
+   "skills": [],
+   "languages": [],
+   "references": []
+}
