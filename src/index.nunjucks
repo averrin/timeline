@@ -1,21 +1,12 @@
 {% extends '_layouts/base.nunjucks' %}
 
-{% import "_modules/link/link.nunjucks" as link %}
+{% block scripts %}
+<script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
+<script src="https://code.createjs.com/preloadjs-0.6.1.min.js"></script>
+{% endblock %}
 
 {% block content %}
 <div class="main-container">
-  <div class="yeogurt-info">
-    <h1>Welcome to Yeogurt!</h1>
-    <p>
-      Take a look at the {{link.content({
-        href: 'https://github.com/larsonjj/generator-yeogurt#yeogurt-generator---',
-        text: 'documentation'
-      })}} and start mixing up something awesome.
-    </p>
-    <p>
-      <img src="images/yeogurt-swirl.png" width="75px" class="logo" />
-    </p>
-  </div>
+  <canvas id="timeline" width="1200" height="300"></canvas>
 </div>
-<code class="version">v1.3.3</code>
 {% endblock %}
