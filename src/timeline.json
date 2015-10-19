@@ -2,7 +2,7 @@
    "basics": {
       "name": "Alexey Nabrodov",
       "label": null,
-      "picture": "https://s3.amazonaws.com/resumup-static/photos/250637/json/original/Nom_nom_kitty_by_ideea.png?1445014659",
+      "picture": "426007.jpg",
       "email": "averrin@gmail.com",
       "phone": "+79811221505",
       "website": "averr.in",
@@ -17,6 +17,7 @@
          "startDate": "2015-01-01",
          "endDate": null,
          "summary": "Senior Developer",
+         "color": "#ffaa11",
          "highlights": []
       },
       {
@@ -26,15 +27,7 @@
          "startDate": "2012-07-01",
          "endDate": "2015-01-01",
          "summary": "Software Lead",
-         "highlights": []
-      },
-      {
-         "company": "NP SRO MOOZHS",
-         "position": "IT Leading Specialist",
-         "website": "",
-         "startDate": "2010-07-01",
-         "endDate": "2011-05-01",
-         "summary": "CRM developing, leading project",
+         "color": "#7911ff",
          "highlights": []
       },
       {
@@ -43,6 +36,17 @@
          "website": "",
          "startDate": "2011-05-01",
          "endDate": "2012-06-01",
+         "summary": "CRM developing, leading project",
+         "color": "#f75252",
+         "highlights": []
+      },
+      {
+         "company": "NP SRO MOOZHS",
+         "position": "IT Leading Specialist",
+         "website": "",
+         "startDate": "2010-07-01",
+         "endDate": "2011-05-01",
+         "color": "#3a693a",
          "summary": "CRM developing, leading project",
          "highlights": []
       },
@@ -53,6 +57,7 @@
          "startDate": "2009-06-01",
          "endDate": "2010-07-01",
          "summary": "System Administration",
+         "color": "#666",
          "highlights": []
       },
       {
@@ -61,6 +66,7 @@
          "website": "",
          "startDate": "2008-12-01",
          "endDate": "2009-06-01",
+         "color": "#33aaaa",
          "summary": "Visiting computer help",
          "highlights": []
       }
@@ -73,6 +79,7 @@
          "startDate": "2006-09-01",
          "endDate": "2011-07-01",
          "gpa": "",
+         "color": "#4d3b4c",
          "courses": []
       }
    ],
