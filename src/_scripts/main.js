@@ -10,12 +10,13 @@ import $ from 'jquery';
 let stage;
 
 const style = {
-  dotBG: '#2c5e40',
+  dotBG: '#534940',
   textFG: '#EFECE7',
+  lineFG: '#a39d93',
   width: 1280,
   height: 300,
   itemHeight: 20,
-  itemHeightBottom: 30,
+  itemHeightBottom: 36,
   hStep: 5,
   mainBG: '#111',
   itemZoom: 1.3,
@@ -85,8 +86,6 @@ class Range {
           animOut.to({alpha: style.itemAlpha, scaleY: 1, y: originalY}, 100);
         });
       });
-      // }
-    // }
   }
   addLabel(item) {
     let label;
@@ -101,7 +100,7 @@ class Range {
     } else {
       label = new createjs.Text(r.institution, style.textFont, style.textFG);
       container.x = this.width / 2 + item.x - label.getMeasuredWidth() / 2;
-      container.y = item.y + style.itemHeightBottom + 16;
+      container.y = item.y + style.itemHeightBottom + 12;
     }
     container.addChild(label);
 
@@ -111,8 +110,10 @@ class Range {
       .to({alpha: 1, rotation: angle}, 300, createjs.Ease.cubicOut).call(() => {
         let ha = new createjs.Shape();
         ha.graphics.beginFill('red')
-          .drawRect(0, 0, label.getMeasuredWidth(), label.getMeasuredHeight() + 2);
+          .drawRect(0, -4,
+            label.getMeasuredWidth(), label.getMeasuredHeight() + 8);
         container.hitArea = ha;
+        // container.addChild(ha);
       });
     return container;
   }
@@ -177,9 +178,8 @@ class Timeline {
     bg.graphics.beginFill(style.mainBG)
       .drawRect(0, 0, style.width, style.height);
     this.stage.addChild(bg);
-    let line0 = new createjs.Shape();
     let line = new createjs.Shape();
-    line.graphics.beginFill(style.textFG)
+    line.graphics.beginFill(style.lineFG)
       .drawRect(0, style.height / 2 - 2, 1, 4);
     let anim = createjs.Tween.get(line);
     let step = style.width / this.data.years.length;
