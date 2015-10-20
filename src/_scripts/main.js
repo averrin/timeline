@@ -226,6 +226,8 @@ class POI {
       animOverL.to({scaleX: 1.2, scaleY: 1.2}, 100);
       let animOverS = createjs.Tween.get(sub);
       animOverS.to({scaleX: 1.2, scaleY: 1.2}, 100);
+      let animOverLL = createjs.Tween.get(line);
+      animOverLL.to({scaleY: style.poiHeight + 6}, 100);
     });
     this.container.on('mouseout', (e) => {
       let animOut = createjs.Tween.get(dot);
@@ -234,6 +236,8 @@ class POI {
       animOverL.to({scaleX: 1, scaleY: 1}, 100);
       let animOverS = createjs.Tween.get(sub);
       animOverS.to({scaleX: 1, scaleY: 1}, 100);
+      let animOverLL = createjs.Tween.get(line);
+      animOverLL.to({scaleY: style.poiHeight}, 100);
     });
     this.container.addChild(dot);
     this.container.addChild(line);
