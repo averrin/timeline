@@ -46,7 +46,7 @@
          "website": "",
          "startDate": "2010-07-01",
          "endDate": "2011-05-01",
-         "color": "#3a693a",
+         "color": "#689068",
          "summary": "CRM developing, leading project",
          "highlights": []
       },
@@ -58,7 +58,8 @@
          "endDate": "2010-07-01",
          "summary": "System Administration",
          "color": "#666",
-         "highlights": []
+         "highlights": [],
+         "partial": true
       },
       {
          "company": "Stack",
@@ -66,15 +67,16 @@
          "website": "",
          "startDate": "2008-12-01",
          "endDate": "2009-06-01",
-         "color": "#33aaaa",
+         "color": "#619a9a",
          "summary": "Visiting computer help",
+         "partial": true,
          "highlights": []
       }
    ],
    "education": [
       {
          "institution": "Saint-Petersburg State University",
-         "area": "Economics",
+         "area": "IT in Economics",
          "studyType": "College",
          "startDate": "2006-09-01",
          "endDate": "2011-07-01",
@@ -82,6 +84,18 @@
          "color": "#4d3b4c",
          "courses": []
       }
+   ],
+   "poi": [
+     {
+       "title": "Create GitHub account",
+       "date": "2010-10-04",
+       "subtitle": "63 repos for now"
+     },
+     {
+       "title": "Patent",
+       "date": "2013-05-10",
+       "subtitle": "Country-wide Emercom System"
+     }
    ],
    "awards": [],
    "publications": [],

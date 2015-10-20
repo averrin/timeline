@@ -12,16 +12,21 @@ let stage;
 const style = {
   dotBG: '#534940',
   textFG: '#EFECE7',
+  poiFG: '#333',
+  poiBG: '#d15b06',
+  subtitleFG: '#dedbd6',
   lineFG: '#a39d93',
   width: 1280,
-  height: 300,
+  height: 400,
   itemHeight: 20,
+  poiHeight: 120,
   itemHeightBottom: 36,
   hStep: 5,
   mainBG: '#111',
   itemZoom: 1.3,
   itemAlpha: 0.7,
   textFont: '9pt Ubuntu, Sans',
+  subtitleFont: '8pt Ubuntu, Sans',
 };
 
 class Range {
@@ -89,20 +94,30 @@ class Range {
   }
   addLabel(item) {
     let label;
+    let  subtitle;
     let angle = 0;
     let r = this.range;
     let container = new createjs.Container();
     if (!r.studyType) {
       label = new createjs.Text(r.company, style.textFont, style.textFG);
-      container.x = this.width / 2 + item.x - 10;
-      container.y = item.y - 20;
+      container.x = this.width / 2 + item.x - 20;
+      container.y = item.y - 24;
+      subtitle = r.position;
+      if (r.partial) {
+        subtitle += ' (partial)';
+      }
       angle = -45;
     } else {
       label = new createjs.Text(r.institution, style.textFont, style.textFG);
       container.x = this.width / 2 + item.x - label.getMeasuredWidth() / 2;
       container.y = item.y + style.itemHeightBottom + 12;
+      subtitle = r.area;
     }
     container.addChild(label);
+    let sub = new createjs.Text(subtitle, style.subtitleFont, style.subtitleFG);
+    sub.x = 14;
+    sub.y = label.getMeasuredHeight() + 2;
+    container.addChild(sub);
 
     container.alpha = 0;
     container.rotation = 0;
@@ -111,7 +126,7 @@ class Range {
         let ha = new createjs.Shape();
         ha.graphics.beginFill('red')
           .drawRect(0, -4,
-            label.getMeasuredWidth(), label.getMeasuredHeight() + 8);
+            Math.max(label.getMeasuredWidth(), sub.getMeasuredWidth() + 14), label.getMeasuredHeight() * 2 + 8);
         container.hitArea = ha;
         // container.addChild(ha);
       });
@@ -162,6 +177,71 @@ class TimeMark {
   }
 }
 
+class POI {
+  constructor(parent, poi) {
+    this.poi = poi;
+    this.container = new createjs.Container();
+    this.index = parent.data.years.indexOf(this.poi.year);
+    let step = style.width / parent.data.years.length;
+    let mstep = step / 12;
+    let dot = new createjs.Shape();
+    dot.graphics.beginFill(style.poiBG)
+      .setStrokeStyle(0.5).s(style.poiFG).drawCircle(0, 0, 1);
+    dot.x = step * this.index + mstep * this.poi.month;
+    dot.y = style.height / 2;
+    let anim = createjs.Tween.get(dot)
+      .to({scaleX: 5, scaleY: 5}, 100, createjs.Ease.cubicOut);
+
+    let line = new createjs.Shape();
+    line.graphics.beginFill(style.poiBG).drawRect(-2, 0, 4, 1);
+    line.x = dot.x;
+    line.y = dot.y;
+
+    let animL = createjs.Tween.get(line)
+      .to({scaleY: style.poiHeight}, 300, createjs.Ease.cubicOut);
+
+    let label = new createjs.Text(this.poi.title, style.textFont, style.textFG);
+    label.alpha = 0;
+    label.x = dot.x + 12;
+    label.y = dot.y + style.poiHeight - label.getMeasuredHeight() - 20;
+    let animT = createjs.Tween.get(label)
+      .to({alpha: 1}, 300, createjs.Ease.cubicOut);
+
+    let sub = new createjs.Text(this.poi.subtitle, style.subtitleFont, style.subtitleFG);
+    sub.x = label.x;
+    sub.y = label.y + label.getMeasuredHeight() + 2;
+
+    let ha = new createjs.Shape();
+    ha.graphics.beginFill('red')
+      .drawRect(0, -4,
+        Math.max(label.getMeasuredWidth(), sub.getMeasuredWidth()), label.getMeasuredHeight() * 2 + 8);
+    this.container.hitArea = ha;
+    ha.x = label.x;
+    ha.y = label.y;
+    // this.container.addChild(ha);
+    this.container.on('mouseover', (e) => {
+      let animOver = createjs.Tween.get(dot);
+      animOver.to({scaleX: 7, scaleY: 7}, 100);
+      let animOverL = createjs.Tween.get(label);
+      animOverL.to({scaleX: 1.2, scaleY: 1.2}, 100);
+      let animOverS = createjs.Tween.get(sub);
+      animOverS.to({scaleX: 1.2, scaleY: 1.2}, 100);
+    });
+    this.container.on('mouseout', (e) => {
+      let animOut = createjs.Tween.get(dot);
+      animOut.to({scaleX: 5, scaleY: 5}, 100);
+      let animOverL = createjs.Tween.get(label);
+      animOverL.to({scaleX: 1, scaleY: 1}, 100);
+      let animOverS = createjs.Tween.get(sub);
+      animOverS.to({scaleX: 1, scaleY: 1}, 100);
+    });
+    this.container.addChild(dot);
+    this.container.addChild(line);
+    this.container.addChild(label);
+    this.container.addChild(sub);
+  }
+}
+
 class Timeline {
   constructor(data) {
     this.data = this.processData(data);
@@ -199,6 +279,9 @@ class Timeline {
             }
             this.stage.addChild(mark.container);
           }
+          if (y == 'near future') {
+            this.drawPOI();
+          }
         });
       scale += step;
     }
@@ -231,6 +314,13 @@ class Timeline {
 
     this.stage.enableMouseOver();
     this.stage.update();
+  }
+
+  drawPOI() {
+    for (let p of this.data.poi) {
+      let poi = new POI(this, p);
+      this.stage.addChild(poi.container);
+    }
   }
 
   processData(data) {
@@ -266,6 +356,11 @@ class Timeline {
       _years.push(n);
     }
     _years.push('near future');
+
+    for (let p of data.poi) {
+      p.year = parseInt(p.date.split('-')[0]);
+      p.month = parseInt(p.date.split('-')[1]);
+    }
     data.years = _years;
     data.map = map;
     return data;
