@@ -5,7 +5,12 @@ export default class POI {
     this.poi = poi;
     this.container = new createjs.Container();
     this.index = parent.data.years.indexOf(this.poi.year);
-    let step = style.width / parent.data.years.length;
+    this.data = parent.data;
+    this.render();
+  }
+
+  render() {
+    let step = style.width / this.data.years.length;
     let mstep = step / 12;
     let dot = new createjs.Shape();
     dot.graphics.beginFill(style.poiBG)
@@ -25,46 +30,47 @@ export default class POI {
 
     let label = new createjs.Text(this.poi.title, style.textFont, style.textFG);
     label.alpha = 0;
-    label.x = dot.x + 12;
-    label.y = dot.y + style.poiHeight - label.getMeasuredHeight() - 20;
+    label.x = 0;
+    label.y = 0;
     let animT = createjs.Tween.get(label)
       .to({alpha: 1}, 300, createjs.Ease.cubicOut);
 
     let sub = new createjs.Text(this.poi.subtitle, style.subtitleFont, style.subtitleFG);
-    sub.x = label.x;
-    sub.y = label.y + label.getMeasuredHeight() + 2;
+    sub.x = 0;
+    sub.y = label.getMeasuredHeight() + 2;
+
+    let text_container = new createjs.Container();
+    text_container.x = dot.x + 12;
+    text_container.y = dot.y + style.poiHeight - label.getMeasuredHeight() - 20;
+    text_container.addChild(label);
+    text_container.addChild(sub);
 
     let ha = new createjs.Shape();
     ha.graphics.beginFill('red')
       .drawRect(0, -4,
         Math.max(label.getMeasuredWidth(), sub.getMeasuredWidth()), label.getMeasuredHeight() * 2 + 8);
     this.container.hitArea = ha;
-    ha.x = label.x;
-    ha.y = label.y;
+    ha.x = text_container.x;
+    ha.y = text_container.y;
     // this.container.addChild(ha);
     this.container.on('mouseover', (e) => {
       let animOver = createjs.Tween.get(dot);
       animOver.to({scaleX: 7, scaleY: 7}, 100);
-      let animOverL = createjs.Tween.get(label);
+      let animOverL = createjs.Tween.get(text_container);
       animOverL.to({scaleX: 1.2, scaleY: 1.2}, 100);
-      let animOverS = createjs.Tween.get(sub);
-      animOverS.to({scaleX: 1.2, scaleY: 1.2}, 100);
       let animOverLL = createjs.Tween.get(line);
       animOverLL.to({scaleY: style.poiHeight + 6}, 100);
     });
     this.container.on('mouseout', (e) => {
       let animOut = createjs.Tween.get(dot);
       animOut.to({scaleX: 5, scaleY: 5}, 100);
-      let animOverL = createjs.Tween.get(label);
+      let animOverL = createjs.Tween.get(text_container);
       animOverL.to({scaleX: 1, scaleY: 1}, 100);
-      let animOverS = createjs.Tween.get(sub);
-      animOverS.to({scaleX: 1, scaleY: 1}, 100);
       let animOverLL = createjs.Tween.get(line);
       animOverLL.to({scaleY: style.poiHeight}, 100);
     });
     this.container.addChild(dot);
     this.container.addChild(line);
-    this.container.addChild(label);
-    this.container.addChild(sub);
+    this.container.addChild(text_container);
   }
 }
