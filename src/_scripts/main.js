@@ -7,8 +7,13 @@ import Timeline from './timeline';
 
 function init(event) {
   let data = event.result;
+  window.data = data;
   let timeline = new Timeline(data);
 }
+
+window.reload = () => {
+  new Timeline(window.data);
+};
 
 $(() => {
   let queue = new createjs.LoadQueue(true);

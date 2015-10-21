@@ -6,6 +6,7 @@ export default {
   poiFG: '#333',
   poiBG: '#d15b06',
   subtitleFG: '#dedbd6',
+  yearFG: '#a39d93',
   lineFG: '#a39d93',
   width: 1280,
   height: 400,

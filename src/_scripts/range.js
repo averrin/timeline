@@ -14,6 +14,7 @@ function convertHex(hex, opacity) {
 export default class Range {
   constructor(parent, range) {
     this.data = parent.data;
+    this.parent = parent;
     this.range = range;
     this.index = parent.data.years.indexOf(this.range.year);
     this.last = false;
@@ -77,6 +78,9 @@ export default class Range {
           }
         });
         this.container.on('mouseout', (e) => {
+          if (this.container.hitTest(this.parent.stage.mouseX, this.parent.stage.mouseY)) {
+            return;
+          }
           let animOut = createjs.Tween.get(item);
           let animOverL = createjs.Tween.get(l);
           animOverL.to({scaleX: 1, scaleY: 1}, 100);
