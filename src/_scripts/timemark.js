@@ -17,7 +17,7 @@ export default class TimeMark {
     dot.y = style.height / 2;
     let anim = createjs.Tween.get(dot)
       .to({scaleX: 5, scaleY: 5}, 100, createjs.Ease.cubicOut);
-    let label = new createjs.Text(this.year, style.textFont, style.textFG);
+    let label = new createjs.Text(this.year, style.textFont, style.subtitleFG);
     label.x = dot.x + 8;
     label.y = dot.y + 4;
 
@@ -28,17 +28,17 @@ export default class TimeMark {
       .drawRect(dot.x - 3, dot.y - 3, 20 + label.getMeasuredWidth(), 30);
     this.container.hitArea = ha;
     let originalX = label.x;
-    this.container.on('mouseover', (e) => {
-      let animOver = createjs.Tween.get(dot);
-      animOver.to({scaleX: 7, scaleY: 7}, 100);
-      let animOverL = createjs.Tween.get(label);
-      animOverL.to({rotation: 30, x: originalX + 5}, 100);
-    });
-    this.container.on('mouseout', (e) => {
-      let animOut = createjs.Tween.get(dot);
-      animOut.to({scaleX: 5, scaleY: 5}, 100);
-      let animOutL = createjs.Tween.get(label);
-      animOutL.to({rotation: 0, x: originalX}, 100);
-    });
+    // this.container.on('mouseover', (e) => {
+    //   let animOver = createjs.Tween.get(dot);
+    //   animOver.to({scaleX: 7, scaleY: 7}, 100);
+    //   let animOverL = createjs.Tween.get(label);
+    //   animOverL.to({rotation: 30, x: originalX + 5}, 100);
+    // });
+    // this.container.on('mouseout', (e) => {
+    //   let animOut = createjs.Tween.get(dot);
+    //   animOut.to({scaleX: 5, scaleY: 5}, 100);
+    //   let animOutL = createjs.Tween.get(label);
+    //   animOutL.to({rotation: 0, x: originalX}, 100);
+    // });
   }
 }

@@ -1,10 +1,25 @@
 import style from './style';
 
+function convertHex(hex, opacity) {
+  hex = hex.replace('#','');
+  let r, g, b;
+  r = parseInt(hex.substring(0,2), 16);
+  g = parseInt(hex.substring(2,4), 16);
+  b = parseInt(hex.substring(4,6), 16);
+
+  let result = 'rgba('+r+','+g+','+b+','+opacity+')';
+  return result;
+}
+
 export default class Range {
   constructor(parent, range) {
     this.data = parent.data;
     this.range = range;
     this.index = parent.data.years.indexOf(this.range.year);
+    this.last = false;
+    if (this.index == parent.data.years.length - 2) {
+      this.last = true;
+    }
     let i = parent.data.map[this.range.year].indexOf(this.range);
     this.container = new createjs.Container();
 
@@ -26,8 +41,14 @@ export default class Range {
     let step = style.width / this.data.years.length;
     let mstep = step / 12;
     let item = new createjs.Shape();
-    item.graphics.beginFill(this.range.color)
-      .drawRect(0, 0, this.width, this.height);
+
+    if (!this.last) {
+      item.graphics.beginFill(this.range.color)
+        .drawRect(0, 0, this.width, this.height);
+    } else {
+      item.graphics.beginLinearGradientFill([this.range.color, convertHex(this.range.color, 0)], [0, 1], 0, 0, this.width * 0.9, 0)
+        .drawRect(0, 0, this.width, this.height);
+    }
     item.x = this.x + (this.range.month - 1) * mstep;
     item.y = this.y - style.itemHeight - 2;
     if (this.range.studyType) {
