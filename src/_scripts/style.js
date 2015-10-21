@@ -19,4 +19,6 @@ export default {
   textFont: '9pt Ubuntu, Sans',
   subtitleFont: '8pt Ubuntu, Sans',
   iconFont: '18pt FontAwesome',
+  nameFont: 'bold 15pt Ubuntu, Sans',
+  summaryFont: '10pt Ubuntu, Sans',
 };

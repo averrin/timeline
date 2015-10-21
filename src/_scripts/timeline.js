@@ -62,11 +62,11 @@ export default class Timeline {
     avatar.x = 0;
     avatar.y = 0;
     let name = new createjs.Text(
-      this.data.basics.name, 'bold 15pt Sans', style.textFG);
+      this.data.basics.name, style.nameFont, style.textFG);
     name.x = 100;
     name.y = 6;
     let summary = new createjs.Text(
-      this.data.basics.summary, '10pt Sans', style.textFG);
+      this.data.basics.summary, style.summaryFont, style.textFG);
     summary.x = 100;
     summary.y = 36;
     this.stage.addChild(avatar);
