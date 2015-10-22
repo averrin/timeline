@@ -22,15 +22,54 @@
 
 body {
   background: #111;
-}
-#reload {
   color: #EFECE7;
+}
+
+#reload {
   font-size: 18pt;
   position: absolute;
   top: 20px;
   left: 1200px;
 }
+
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 #reload:hover {
   animation:spin 0.5s linear;
+}
+
+.info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: 'Ubuntu';
+  width: 400px;
+}
+.info img {
+  float: left;
+}
+.info .user {
+  margin-left: 100px;
+  margin-top: 6px;
+}
+.info .user .name {
+  font-size: 14pt;
+  font-weight: bold;
+}
+.info .user .summary {
+  font-size: 10pt;
+}
+.info .user .contacts {
+  margin-top: 6px;
+  font-size: 10pt;
+}
+a {
+  color: #fff8e2;
+}
+.info .user .contacts ul {
+  padding-left: 0;
+  margin-left: 0;
+}
+.info .user .contacts li {
+  margin-top: 4px;
+  list-style: none;
 }

@@ -47,7 +47,7 @@ export default class Range {
       item.graphics.beginFill(this.range.color)
         .drawRect(0, 0, this.width, this.height);
     } else {
-      item.graphics.beginLinearGradientFill([this.range.color, convertHex(this.range.color, 0)], [0, 1], 0, 0, this.width * 0.9, 0)
+      item.graphics.beginLinearGradientFill([this.range.color, convertHex(this.range.color, 0)], [0, 1], 0, 0, this.width * 0.95, 0)
         .drawRect(0, 0, this.width, this.height);
     }
     item.x = this.x + (this.range.month - 1) * mstep;

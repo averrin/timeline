@@ -2,11 +2,14 @@ import style from './style';
 import POI from './poi';
 import TimeMark from './timemark';
 import Range from './range';
+import Info from './info';
 
 export default class Timeline {
   constructor(data) {
     this.data = this.processData(data);
     this.stage = new createjs.Stage('timeline');
+    this.stage.canvas.width = style.width;
+    this.stage.canvas.height = style.height;
     this.marks = [];
     this.ranges = [];
     createjs.Ticker.setFPS(60);
@@ -58,34 +61,7 @@ export default class Timeline {
     this.stage.addChild(work);
     this.stage.addChild(edu);
 
-    let avatar = new createjs.Bitmap(this.data.basics.picture);
-    avatar.x = 0;
-    avatar.y = 0;
-    let name = new createjs.Text(
-      this.data.basics.name, style.nameFont, style.textFG);
-    name.x = 100;
-    name.y = 6;
-    let summary = new createjs.Text(
-      this.data.basics.summary, style.summaryFont, style.textFG);
-    summary.x = 100;
-    summary.y = 36;
-    this.stage.addChild(avatar);
-    this.stage.addChild(name);
-    this.stage.addChild(summary);
-
-    // let reload = new createjs.Text(String.fromCharCode(parseInt('f021', 16)), style.iconFont, style.textFG);
-    // reload.x = style.width - 40;
-    // reload.y = 40;
-    // let ha = new createjs.Shape();
-    // ha.graphics.beginFill('red')
-    //   .drawRect(reload.x - 2, reload.y, 26, 26);
-    // reload.hitArea = ha;
-    // this.stage.addChild(ha);
-    // this.stage.addChild(reload);
-    // reload.on('click', () => {
-    //   let animR = createjs.Tween.get(reload);
-    //   animR.to({rotation: 180}, 100, createjs.Ease.cubicOut);
-    // });
+    this.info = new Info(this);
 
     this.stage.enableMouseOver();
     this.stage.update();
