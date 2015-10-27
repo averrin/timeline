@@ -9,7 +9,7 @@ export default class Info {
     this.render();
   }
   render() {
-    let content = nunjucks.render('info.html', this.data);
+    let content = nunjucks.render('./info.html', this.data);
     $('.main-container .info').remove();
     $('.main-container').append(content);
   }
