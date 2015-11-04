@@ -2,6 +2,7 @@
   "name": "timeline",
   "version": "0.0.1",
   "dependencies": {
+    "director": "^1.2.8",
     "jquery": "~2.1.3",
     "normalize.css": "~3.0.1"
   },

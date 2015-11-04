@@ -1,6 +1,7 @@
 'use strict';
 
 import $ from 'jquery';
+import director from 'director'
 import style from './style';
 import Timeline from './timeline';
 // import Container from 'createjs';
@@ -11,38 +12,26 @@ function init(event) {
   let timeline = new Timeline(data);
 }
 
+function init_profile(event) {
+  let profile = event.result;
+  let content = nunjucks.render('./profile.html', {profile});
+  $('.main-container').html(content);
+}
+
 window.reload = () => {
   new Timeline(window.data);
 };
 
 $(() => {
   let queue = new createjs.LoadQueue(true);
-  queue.on('fileload', init, this);
-  queue.loadFile('timeline.json');
+  let router = director.Router({
+    timeline: () => {
+      queue.on('fileload', init, this);
+      queue.loadFile('timeline.json');
+    },
+    profile: () => {
+      queue.on('fileload', init_profile, this);
+      queue.loadFile('profile.json');
+    }
+  }).init('timeline');
 });
-
-// Nunjucks filters
-
-function limitTo(input, limit) {
-  'use strict';
-  if (typeof limit !== 'number') {
-    return input;
-  }
-  if (typeof input === 'string') {
-    if (limit >= 0) {
-      return input.substring(0, limit);
-    } else {
-      return input.substr(limit);
-    }
-  }
-  if (Array.isArray(input)) {
-    limit = Math.min(limit, input.length);
-    if (limit >= 0) {
-      return input.splice(0, limit);
-    } else {
-      return input.splice(input.length + limit, input.length);
-    }
-  }
-  return input;
-}
-window.limitTo = limitTo;
