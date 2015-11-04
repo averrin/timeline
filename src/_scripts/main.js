@@ -23,6 +23,7 @@ function init(event) {
 
 function init_profile(event) {
   let profile = event.result;
+  window.profile = profile;
   let content = nunjucks.render('./profile.html', {profile});
   $('.main-container').html(content);
   queue._listeners = {};

@@ -2,7 +2,7 @@
    "basics": {
       "name": "Alexey Nabrodov",
       "label": null,
-      "picture": "426007.jpg",
+      "picture": "https://avatars.githubusercontent.com/u/426007?v=3",
       "email": "averrin@gmail.com",
       "skype": "averrin_nab",
       "phone": "+79811221505",
@@ -90,7 +90,7 @@
      {
        "title": "Create GitHub account",
        "date": "2010-10-04",
-       "subtitle": "63 repos for now"
+       "subtitle": "64 repos for now"
      },
      {
        "title": "Patent",
