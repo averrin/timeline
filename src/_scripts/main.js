@@ -12,34 +12,41 @@ let queue = new createjs.LoadQueue(true);
 let stage;
 let handler;
 let loader;
+let timeline;
 
-function initTimeline(event) {
+function initTimeline() {
+  if (timeline) {
+    return;
+  }
   $('.main-container').html('');
   let data;
-  if (event) {
-    data = event.result;
+  if (!window.data) {
+    data = queue.getResult('timeline.json');
     window.data = data;
     if (loader) {
       return loader.stop().then(initTimeline);
     }
   }
+  stage.removeAllChildren();
   stage.clear();
-  new Timeline(stage, window.data);
-  queue._listeners = {};
-  queue.off(handler);
+  timeline = new Timeline(stage, window.data);
 }
 
 function initProfile(event) {
+  queue._listeners = {};
+  queue.off(handler);
+  stage.removeAllChildren();
   stage.clear();
   let profile = event.result;
   window.profile = profile;
   let content = nunjucks.render('./profile.html', {profile});
   $('.main-container').html(content);
-  queue._listeners = {};
-  queue.off(handler);
 }
 
 function initMain(event) {
+  queue._listeners = {};
+  queue.off(handler);
+  stage.removeAllChildren();
   stage.clear();
   stage.canvas.width = style.width;
   stage.canvas.height = style.height;
@@ -47,14 +54,12 @@ function initMain(event) {
   let bgImage = queue.getResult('code_nobg.png');
   bg.graphics.beginBitmapFill(bgImage)
     .drawRect(0, 0, bgImage.width, bgImage.height);
-  bg.x = (1600 - bgImage.width) / 2 + 200;
+  bg.x = (style.width - bgImage.width) / 2 + 200;
   bg.y = 20;
   bg.alpha = 0;
   stage.addChild(bg);
   let animator = createjs.Tween.get(bg);
   animator.to({alpha: 1}, 500);
-  queue._listeners = {};
-  queue.off(handler);
 }
 
 function initInfo(event) {
@@ -81,8 +86,9 @@ $(() => {
 
   let router = director.Router({
     timeline: () => {
-      handler = queue.on('fileload', initTimeline, this);
-      queue.loadFile('timeline.json');
+      // handler = queue.on('fileload', initTimeline, this);
+      // queue.loadFile('timeline.json');
+      initTimeline();
     },
     profile: () => {
       handler = queue.on('fileload', initProfile, this);

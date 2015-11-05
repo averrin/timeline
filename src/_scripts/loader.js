@@ -248,7 +248,7 @@ export default class Loader{
       setTimeout(() => {
         cancelAnimationFrame(this.rq);
         resolve();
-      }, 3000);
+      }, 4000);
     });
   }
 }
