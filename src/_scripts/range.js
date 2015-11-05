@@ -61,31 +61,32 @@ export default class Range {
     this.container.addChild(item);
 
     let anim = createjs.Tween.get(item)
-      .to({scaleX: 1}, this.width * 4, createjs.Ease.cubicOut).call(() => {
-        let l = this.addLabel(item);
-        this.container.addChild(l);
-        this.container.on('mouseover', (e) => {
-          let animOver = createjs.Tween.get(item);
-          let animOverL = createjs.Tween.get(l);
-          animOverL.to({scaleX: 1.2, scaleY: 1.2}, 100);
-          if (!this.range.studyType) {
-            animOver.to({
-              alpha: 1, scaleY: style.itemZoom,
-              y: originalY - style.itemHeight * (style.itemZoom - 1)
-            }, 100);
-          } else {
-            animOver.to({alpha: 1, scaleY: style.itemZoom}, 100);
-          }
-        });
-        this.container.on('mouseout', (e) => {
-          if (this.container.hitTest(this.parent.stage.mouseX, this.parent.stage.mouseY)) {
-            return;
-          }
-          let animOut = createjs.Tween.get(item);
-          let animOverL = createjs.Tween.get(l);
-          animOverL.to({scaleX: 1, scaleY: 1}, 100);
-          animOut.to({alpha: style.itemAlpha, scaleY: 1, y: originalY}, 100);
-        });
+      .to({scaleX: 1}, this.width * 4, createjs.Ease.cubicOut);
+      // .call(() => {
+    let l = this.addLabel(item);
+    this.container.addChild(l);
+    this.container.on('mouseover', (e) => {
+      let animOver = createjs.Tween.get(item);
+      let animOverL = createjs.Tween.get(l);
+      animOverL.to({scaleX: 1.2, scaleY: 1.2}, 100);
+      if (!this.range.studyType) {
+        animOver.to({
+          alpha: 1, scaleY: style.itemZoom,
+          y: originalY - style.itemHeight * (style.itemZoom - 1)
+        }, 100);
+      } else {
+        animOver.to({alpha: 1, scaleY: style.itemZoom}, 100);
+      }
+    });
+    this.container.on('mouseout', (e) => {
+      if (this.container.hitTest(this.parent.stage.mouseX, this.parent.stage.mouseY)) {
+        return;
+      }
+      let animOut = createjs.Tween.get(item);
+      let animOverL = createjs.Tween.get(l);
+      animOverL.to({scaleX: 1, scaleY: 1}, 100);
+      animOut.to({alpha: style.itemAlpha, scaleY: 1, y: originalY}, 100);
+        // });
       });
   }
   addLabel(item) {

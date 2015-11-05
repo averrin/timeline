@@ -2,12 +2,11 @@ import style from './style';
 import POI from './poi';
 import TimeMark from './timemark';
 import Range from './range';
-import Info from './info';
 
 export default class Timeline {
-  constructor(data) {
+  constructor(stage, data) {
+    this.stage = stage;
     this.data = this.processData(data);
-    this.stage = new createjs.Stage('timeline');
     this.stage.canvas.width = style.width;
     this.stage.canvas.height = style.height;
     this.marks = [];
@@ -60,8 +59,6 @@ export default class Timeline {
     this.stage.addChild(line);
     this.stage.addChild(work);
     this.stage.addChild(edu);
-
-    this.info = new Info(this);
 
     this.stage.enableMouseOver();
     this.stage.update();
