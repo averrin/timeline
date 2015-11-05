@@ -10,7 +10,7 @@ export default {
   lineFG: '#a39d93',
   width: window.innerWidth,
   height: window.innerHeight,
-  itemHeight: 20,
+  itemHeight: 22,
   poiHeight: 120,
   itemHeightBottom: 36,
   hStep: 5,

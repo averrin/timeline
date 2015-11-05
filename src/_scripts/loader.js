@@ -140,39 +140,52 @@ export default class Loader{
     document.addEventListener('touchmove', this.mousemove);
     document.addEventListener('touchstart', this.touchstart);
 
-    target.x = Math.random() * ctx.canvas.width;
-    target.y = Math.random() * ctx.canvas.height;
-
     this.resize();
+    target.x = ctx.canvas.width / 2;
+    target.y = ctx.canvas.height / 2;
+
     this.reset();
     this.loop();
 
     // kind of a hack ... but trigger a few mousemoves to kick things off
 
     this.start();
+
+    this.loaded = false;
+    this.done = new Promise((resolve) => {
+      let done = () => {
+        if (this.loaded) {
+          resolve();
+        } else {
+          setTimeout(done.bind(this), 5);
+        }
+      };
+      setTimeout(done.bind(this), 15);
+    });
   }
 
   start() {
+    this.timers = [];
     this.mousemove({
       clientX: Math.random() * ctx.canvas.width,
       clientY: Math.random() * ctx.canvas.height
     });
 
-    setTimeout(() => {
+    this.timers.push(setTimeout(() => {
       this.mousemove({
         clientX: Math.random() * ctx.canvas.width,
         clientY: Math.random() * ctx.canvas.height
       });
-    }, 200);
+    }, 200));
 
-    setTimeout(() => {
+    this.timers.push(setTimeout(() => {
       this.mousemove({
         clientX: Math.random() * ctx.canvas.width,
         clientY: Math.random() * ctx.canvas.height
       });
-    }, 700);
+    }, 700));
 
-    setTimeout(this.start.bind(this), 1000);
+    this.timers.push(setTimeout(this.start.bind(this), 1000));
   }
 
   mousemove(event) {
@@ -210,8 +223,8 @@ export default class Loader{
 
   loop() {
     ctx.globalCompositeOperation = 'source-over';
-    ctx.fillStyle = '#242424';
-    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    // ctx.fillStyle = '#242424';
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     ctx.globalCompositeOperation = 'lighter';
     ctx.strokeStyle = 'hsla(' + Math.round(hue.update()) + ',90%,50%,0.4)';
     ctx.lineWidth = 1;
@@ -225,7 +238,17 @@ export default class Loader{
     this.rq = requestAnimationFrame(this.loop.bind(this));
   }
   stop() {
-    cancelAnimationFrame(this.rq);
-    this.rq = null;
+    return new Promise((resolve) => {
+      for (let timer of this.timers) {
+        clearTimeout(timer);
+      }
+      target.x = ctx.canvas.width / 2;
+      target.y = ctx.canvas.height / 2;
+      this.rq = null;
+      setTimeout(() => {
+        cancelAnimationFrame(this.rq);
+        resolve();
+      }, 3000);
+    });
   }
 }

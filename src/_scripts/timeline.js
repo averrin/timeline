@@ -11,16 +11,14 @@ export default class Timeline {
     this.stage.canvas.height = style.height;
     this.marks = [];
     this.ranges = [];
-    createjs.Ticker.setFPS(60);
-    createjs.Ticker.addEventListener('tick', this.stage);
     this.render();
   }
 
   render() {
-    let bg = new createjs.Shape();
-    bg.graphics.beginFill(style.mainBG)
-      .drawRect(0, 0, style.width, style.height);
-    this.stage.addChild(bg);
+    // let bg = new createjs.Shape();
+    // bg.graphics.beginFill(style.mainBG)
+    //   .drawRect(0, 0, style.width, style.height);
+    // this.stage.addChild(bg);
     let line = new createjs.Shape();
     line.graphics.beginFill(style.lineFG)
       .drawRect(0, style.height / 2 - 2, 1, 4);
@@ -30,11 +28,11 @@ export default class Timeline {
     for (let [i, y] of this.data.years.entries()) {
       anim.to({scaleX: scale}, 200, createjs.Ease.cubicOut)
         .call(() => {
-          if (y != 0) {
+          if (y !== 0) {
             let mark = new TimeMark(this, y);
             this.marks.push(mark);
             if (this.data.map[y]) {
-              for (let [i, r] of this.data.map[y].entries()) {
+              for (let r of this.data.map[y]) {
                 let range = new Range(this, r);
                 this.ranges.push(range);
                 this.stage.addChild(range.container);
@@ -42,7 +40,7 @@ export default class Timeline {
             }
             this.stage.addChild(mark.container);
           }
-          if (y == 'near future') {
+          if (y === 'near future') {
             this.drawPOI();
           }
         });
