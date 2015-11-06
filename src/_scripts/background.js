@@ -35,5 +35,101 @@ export default class Background {
       }
     }
     this.stage.update();
+    setTimeout(this.randomEffect.bind(this), 2000);
+  }
+
+  randomEffect(row, col) {
+    row = row || Math.floor(Math.random() * (this.nodes.length - 6) + 3);
+    col = col ||  Math.floor(Math.random() * (this.nodes[0].length - 6) + 3);
+    let _row = row - 2;
+    let _col = col - 2;
+
+    for (let i = _row; i <= row + 2; i++){
+      for (let j = _col; j <= col + 2; j++){
+        let node;
+        try {
+          node = this.nodes[i][j];
+        } catch (e) {
+          continue;
+        }
+        if (!node) {
+          continue;
+        }
+        let scale = 1.1;
+        if ((i > _row && i <= row+1) || (j > _col-1 && j <= col+1)) {
+          scale *= 1.6;
+        }
+        if (i === row && j === col) {
+          scale *= 1.5;
+        }
+        let offsetX = 0;
+        let offsetY = 0;
+        let d = 2;
+        if (i < row) {
+          offsetX = -d;
+        } else if (i != row) {
+          offsetX = d;
+        }
+        if (j < col) {
+          offsetY = -d;
+        } else if (j != col) {
+          offsetY = d;
+        }
+        let animator = createjs.Tween.get(node);
+        animator.to({
+          scaleX: scale, scaleY: scale,
+          y: j*style.BGDistance - scale / 2 + offsetY,
+          x: i*style.BGDistance - scale / 2 + offsetX,
+        }, 1200)
+        .to({
+          scaleX: 1, scaleY: 1,
+          y: j*style.BGDistance,
+          x: i*style.BGDistance,
+        }, 700);
+      }
+    }
+    setTimeout(() => {
+      let r = Math.random();
+      let t = Math.random();
+      let orow = row;
+      let ocol = col;
+      if (r < 0.3) {
+        row += 3;
+        if (row >= this.nodes.lenght) {
+          row = null;
+        }
+      } else if (r > 0.6) {
+        row -= 3;
+        if (row <= 0) {
+          row = null;
+        }
+      } else {
+        if ((r * 10) % 2) {
+          row = null;
+        }
+      }
+      if (t < 0.3) {
+        col += 3;
+        if (row !== orow) {
+          col -= 1;
+        }
+        if (col >= this.nodes[0].lenght) {
+          col = null;
+        }
+      } else if (t > 0.6) {
+        col -= 3;
+        if (row !== orow) {
+          col += 1;
+        }
+        if (col <= 0) {
+          col = null;
+        }
+      } else {
+        if ((t * 10) % 2) {
+          col = null;
+        }
+      }
+      this.randomEffect(row, col);
+    }, 500);
   }
 }

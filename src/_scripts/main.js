@@ -16,46 +16,36 @@ let timeline;
 
 function initTimeline() {
   $('.main-container').html('');
-  let data;
-  // if (!window.data) {
-  data = queue.getResult('timeline.json');
-  window.data = data;
-  //   if (loader) {
-  //     return loader.stop().then(initTimeline);
-  //   }
-  // }
+  let data = queue.getResult('timeline.json');
   stage.removeAllChildren();
   stage.clear();
-  timeline = new Timeline(stage, window.data);
+  timeline = new Timeline(stage, data);
 }
 
 function initProfile() {
   stage.removeAllChildren();
   stage.clear();
   let profile = queue.getResult('profile.json');
-  window.profile = profile;
   let template = queue.getResult('profile.html');
   let content = nunjucks.renderString(template, {profile});
   $('.main-container').html(content);
 }
 
 function initMain(event) {
-  queue._listeners = {};
-  queue.off(handler);
-  stage.removeAllChildren();
-  stage.clear();
-  stage.canvas.width = style.width;
-  stage.canvas.height = style.height;
-  let bg = new createjs.Shape();
-  let bgImage = queue.getResult('bg');
-  bg.graphics.beginBitmapFill(bgImage)
-    .drawRect(0, 0, bgImage.width, bgImage.height);
-  bg.x = (style.width - bgImage.width) / 2 + 200;
-  bg.y = 20;
-  bg.alpha = 0;
-  stage.addChild(bg);
-  let animator = createjs.Tween.get(bg);
-  animator.to({alpha: 1}, 500);
+  // stage.removeAllChildren();
+  // stage.clear();
+  // stage.canvas.width = style.width;
+  // stage.canvas.height = style.height;
+  // let bg = new createjs.Shape();
+  // let bgImage = queue.getResult('bg');
+  // bg.graphics.beginBitmapFill(bgImage)
+  //   .drawRect(0, 0, bgImage.width, bgImage.height);
+  // bg.x = (style.width - bgImage.width) / 2 + 200;
+  // bg.y = 20;
+  // bg.alpha = 0;
+  // stage.addChild(bg);
+  // let animator = createjs.Tween.get(bg);
+  // animator.to({alpha: 1}, 500);
 }
 
 function initInfo() {
@@ -68,7 +58,6 @@ $(() => {
     loader.loaded = true;
   });
   queue.on('fileload', (event)=> {
-    console.log(event);
     if (queue.getResult('timeline.json') && queue.getResult('info.html')) {
       return initInfo();
     }
