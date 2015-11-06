@@ -34,6 +34,7 @@ export default class Range {
     this.height =
       (this.range.studyType ? style.itemHeightBottom : style.itemHeight) +
       i * style.hStep;
+    this.height = this.range.partial ? this.height * 0.75 : this.height;
 
     this.render();
   }
@@ -51,7 +52,7 @@ export default class Range {
         .drawRect(0, 0, this.width, this.height);
     }
     item.x = this.x + (this.range.month - 1) * mstep;
-    item.y = this.y - style.itemHeight - 2;
+    item.y = this.y - this.height - 2;
     if (this.range.studyType) {
       item.y = this.y + 2;
     }
@@ -62,7 +63,6 @@ export default class Range {
 
     let anim = createjs.Tween.get(item)
       .to({scaleX: 1}, this.width * 4, createjs.Ease.cubicOut);
-      // .call(() => {
     let l = this.addLabel(item);
     this.container.addChild(l);
     this.container.on('mouseover', (e) => {
@@ -72,26 +72,26 @@ export default class Range {
       if (!this.range.studyType) {
         animOver.to({
           alpha: 1, scaleY: style.itemZoom,
-          y: originalY - style.itemHeight * (style.itemZoom - 1)
+          y: originalY - this.height * (style.itemZoom - 1)
         }, 100);
       } else {
         animOver.to({alpha: 1, scaleY: style.itemZoom}, 100);
       }
     });
     this.container.on('mouseout', (e) => {
-      if (this.container.hitTest(this.parent.stage.mouseX, this.parent.stage.mouseY)) {
+      if (this.container.hitTest(
+          this.parent.stage.mouseX, this.parent.stage.mouseY)) {
         return;
       }
       let animOut = createjs.Tween.get(item);
       let animOverL = createjs.Tween.get(l);
       animOverL.to({scaleX: 1, scaleY: 1}, 100);
       animOut.to({alpha: style.itemAlpha, scaleY: 1, y: originalY}, 100);
-        // });
-      });
+    });
   }
   addLabel(item) {
     let label;
-    let  subtitle;
+    let subtitle;
     let angle = 0;
     let r = this.range;
     let container = new createjs.Container();
@@ -123,7 +123,8 @@ export default class Range {
         let ha = new createjs.Shape();
         ha.graphics.beginFill('red')
           .drawRect(0, -4,
-            Math.max(label.getMeasuredWidth(), sub.getMeasuredWidth() + 14), label.getMeasuredHeight() * 2 + 8);
+            Math.max(label.getMeasuredWidth(), sub.getMeasuredWidth() + 14),
+            label.getMeasuredHeight() * 2 + 8);
         container.hitArea = ha;
         // container.addChild(ha);
       });

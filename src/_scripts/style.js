@@ -22,4 +22,6 @@ export default {
   iconFont: '18pt FontAwesome',
   nameFont: 'bold 15pt Ubuntu, Sans',
   summaryFont: '10pt Ubuntu, Sans',
+  BGDistance: 24,
+  BGColor: '#333',
 };

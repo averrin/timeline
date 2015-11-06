@@ -1,6 +1,7 @@
 {% extends '_layouts/base.nunjucks' %}
 
 {% block stylesheets %}
+    <link rel="stylesheet" href="assets/atvImg.css"/>
 {% endblock %}
 
 {% block scripts %}
@@ -9,10 +10,20 @@
   <script src="https://code.createjs.com/preloadjs-0.6.1.min.js"></script>
   <script src="https://code.createjs.com/tweenjs-0.6.1.min.js"></script>
   <script src="{{baseUrl}}scripts/main.js"></script>
+
+  <script src="{{baseUrl}}assets/atvImg-min.js"></script>
+  <!-- <script src="http://kloc.pm/js/prod/home.js"></script> -->
 {% endblock %}
 
 {% block content %}
-  <a href="https://github.com/averrin/timeline"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+  <a href="https://github.com/averrin/timeline" target="_blank">
+    <div class="image atvImg">
+       <img src="assets/gh_btn_full.png">
+
+       <div class="atvImg-layer" data-img="assets/gh_btn_full.png"></div>
+       <div class="atvImg-layer" data-img="assets/gh_btn_fg5.png"></div>
+    </div>
+  </a>
   <canvas id="scene"></canvas>
   <canvas id="background"></canvas>
   <div class="main-container">

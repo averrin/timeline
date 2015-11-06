@@ -63,6 +63,7 @@ function initInfo() {
 }
 
 $(() => {
+  atvImg();
   queue.on('complete', (event)=> {
     loader.loaded = true;
   });
