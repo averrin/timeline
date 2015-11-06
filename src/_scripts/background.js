@@ -44,8 +44,15 @@ export default class Background {
     let _row = row - 2;
     let _col = col - 2;
 
-    for (let i = _row; i <= row + 2; i++){
-      for (let j = _col; j <= col + 2; j++){
+    for (let i = _row; i <= row + 2; i++) {
+      for (let j = _col; j <= col + 2; j++) {
+        if ((i === _row && j === _col) ||
+            (i === _row && j === col + 2) ||
+            (i === row + 2 && j === _col) ||
+            (i === row + 2 && j === col + 2)
+        ) {
+          continue;
+        }
         let node;
         try {
           node = this.nodes[i][j];
@@ -56,7 +63,7 @@ export default class Background {
           continue;
         }
         let scale = 1.1;
-        if ((i > _row && i <= row+1) || (j > _col-1 && j <= col+1)) {
+        if ((i > _row && i <= row + 1) || (j > _col && j <= col + 1)) {
           scale *= 1.6;
         }
         if (i === row && j === col) {
