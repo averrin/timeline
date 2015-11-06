@@ -157,10 +157,10 @@ export default class Loader{
         if (this.loaded) {
           resolve();
         } else {
-          setTimeout(done.bind(this), 5);
+          setTimeout(done.bind(this), 100);
         }
       };
-      setTimeout(done.bind(this), 15);
+      setTimeout(done.bind(this), 3000);
     });
   }
 
@@ -248,7 +248,7 @@ export default class Loader{
       setTimeout(() => {
         cancelAnimationFrame(this.rq);
         resolve();
-      }, 4000);
+      }, 3500);
     });
   }
 }

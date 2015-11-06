@@ -1,10 +1,5 @@
 {% block stylesheets %}
-    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.indigo-pink.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link href='https://fonts.googleapis.com/css?family=Ubuntu:300,400,600,700' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <link href="{{profile.user.avatar_url}}" rel="shortcut icon">
-    <link rel="stylesheet" href="{{baseUrl}}styles/profile.css"/>
 {% endblock %}
 
 {% block scripts %}
@@ -12,7 +7,6 @@
 {% endblock %}
 
 {% block content %}
-  <div class="main-container">
   <div class="container mdl-grid">
     <div class="mdl-cell--6-col">
       <div class="mdl-card mdl-shadow--2dp mdl-cell">
@@ -117,6 +111,5 @@
         </div>
       </div>
     </div>
-  </div>
   </div>
 {% endblock %}

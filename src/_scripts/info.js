@@ -3,12 +3,13 @@ import nunjucks from 'nunjucks';
 import $ from 'jquery';
 
 export default class Info {
-  constructor(data) {
-    this.data = data;
+  constructor(assets) {
+    this.data = assets.getResult('timeline.json');
+    this.template = assets.getResult('info.html');
     this.render();
   }
   render() {
-    let content = nunjucks.render('./info.html', this.data);
+    let content = nunjucks.renderString(this.template, this.data);
     $('.info').remove();
     $('body').append(content);
   }
