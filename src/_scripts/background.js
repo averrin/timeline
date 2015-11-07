@@ -35,7 +35,16 @@ export default class Background {
       }
     }
     this.stage.update();
-    setTimeout(this.randomEffect.bind(this), 2000);
+    setTimeout(this.completeBG.bind(this), 40 * (style.width / d + style.height / d) + 1000);
+    // setTimeout(this.randomEffect.bind(this), 2000);
+  }
+
+  completeBG() {
+    let bg = this.stage.toDataURL();
+    document.body.style.backgroundImage = `url(${bg})`;
+    this.stage.removeAllChildren();
+    this.stage.clear();
+    this.randomEffect();
   }
 
   randomEffect(row, col) {
@@ -62,6 +71,7 @@ export default class Background {
         if (!node) {
           continue;
         }
+        this.stage.addChild(node);
         let scale = 1.1;
         if ((i > _row && i <= row + 1) || (j > _col && j <= col + 1)) {
           scale *= 1.6;
@@ -92,7 +102,9 @@ export default class Background {
           scaleX: 1, scaleY: 1,
           y: j*style.BGDistance,
           x: i*style.BGDistance,
-        }, 700);
+        }, 700).call(()=> {
+          this.stage.removeChild(node);
+        });
       }
     }
     setTimeout(() => {
@@ -132,7 +144,7 @@ export default class Background {
           col = null;
         }
       } else {
-        if ((t * 10) % 2) {
+        if (Math.floor(t * 10) % 2) {
           col = null;
         }
       }
