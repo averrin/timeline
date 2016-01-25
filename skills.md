@@ -7,6 +7,8 @@ JavaScript (EcmaScript2015)
 Node.js (Expresso, Meteor.js)
 HTML5 Canvas (Vanilla / EaselJS)
 
+GO
+
 CSS3
 Bootstrap 3
 
