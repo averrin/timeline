@@ -32,6 +32,8 @@ function initProfile() {
 }
 
 function initMain(event) {
+  stage.removeAllChildren();
+  stage.clear();
   let template = queue.getResult('main.html');
   let content = nunjucks.renderString(template);
   $('.main-container').html(content);
