@@ -1,0 +1,166 @@
+body {
+	 padding: 50px 0;
+	 font-size: 19px;
+	 font-family: HelveticaNeueETW01-55Rg;
+}
+
+a {
+	color: #4444aa;
+}
+
+sup {
+	vertical-align: super;
+	font-size: 8pt;
+	color: black;
+}
+
+.remark{
+	height: 100%;
+	display: block;
+	/*position: relative;
+	left: 800px;
+	top: -100px;*/
+	font-style: italic;
+	font-size: 10pt;
+	width: 300px;
+	position: absolute;
+	right: 40px;
+}
+
+article {
+	 margin: 0 auto;
+	 width: 800px;
+	 -webkit-box-sizing: border-box;
+	 -moz-box-sizing: border-box;
+	 box-sizing: border-box;
+}
+
+h1 {
+	 font-family: HelveticaNeueETW01-75Bd;
+	 font-size: 5.105em;
+	 line-height: 2.28em;
+	 text-align: center;
+	 text-transform: uppercase;
+	 width: 784.109375px;
+}
+h1.long {
+	font-size: 2.3em;
+}
+
+p.intro {
+	 font-family: HelveticaNeueETW02-45Lt;
+	 font-size: 1.368em;
+	 border-top: 1px;
+	 border-bottom: 1px;
+	 padding: 1.154em;
+	 text-align: center;
+	 border-style: solid;
+	 line-height: 1.5em;
+	 margin: 1.038em 0px;
+}
+
+p {
+	 font-size: 1em;
+	 line-height: 1.421em;
+	 color: rgba(51, 51, 51, 0.80);
+	 margin: 0px 0px 1.421em 0px;
+	 font-family: Lora;
+	 font-weight: 400;
+	 font-style: normal;
+	 text-align: left;
+}
+
+li {
+	font-size: 1em;
+	line-height: 1.421em;
+	color: rgba(51, 51, 51, 0.80);
+	margin: 0px 0px 1.421em 0px;
+	font-family: Lora;
+	font-weight: 400;
+	font-style: normal;
+	text-align: left;
+	margin-bottom: 12px;
+}
+
+em {
+	font-style: italic;
+}
+
+h2 {
+	 font-size: 1.526em;
+	 font-family: HelveticaNeueETW02-65Md;
+	 line-height: 0.931em;
+	 margin: 200px 0px 0.931em 0px;
+}
+
+p.pullquote {
+	 padding-left: 10px;
+	 border-style: solid;
+	 border-left-width: 3px;
+	 color: rgba(51, 51, 51, 1.00);
+	 font-size: 1em;
+	 line-height: 1.421em;
+	 margin: 0px 0px 1.421em 0px;
+}
+
+p.author {
+	 text-align: center;
+	 font-size: 16px;
+	 letter-spacing: 2px;
+	 /*font-family: "Alternate Gothic No.1";*/
+	 font-family: 'Pathway Gothic One', sans-serif;
+	 font-weight: 600;
+	 font-style: normal;
+	 margin: 10px 0px 22.7360000610352px 0px;
+}
+
+blockquote {
+	 text-align: right;
+	 font-size: 20px;
+}
+
+p.quote {
+	 text-align: right;
+	 font-family: "Arbutus Slab";
+	 font-weight: 400;
+	 font-style: normal;
+	 margin: 0px 0px 10px 0px;
+}
+
+strong {
+	 font-family: "abril-text";
+	 font-weight: 700;
+	 font-style: italic;
+}
+
+p.divider {
+	 text-align: center;
+	 font-size: 35px;
+}
+
+@media screen and (max-width: 900px) {
+	 article {
+	 margin: 0 auto;
+	 width: 100%;
+	 padding: 0 2em;
+}
+
+} @media screen and (max-width: 480px) {
+	 body {
+	 font-size: 90%;
+}
+
+h1 {
+	 font-size: 3.75em;
+	 line-height: 0.929em;
+}
+
+p {
+	 font-size: 16px;
+}
+
+p.pullquote {
+	 font-size: 16px;
+}
+
+}
