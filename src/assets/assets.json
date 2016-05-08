@@ -5,6 +5,7 @@
        {"src": "profile.json", "id": "profile.json"},
        {"src": "templates/profile.html", "id": "profile.html"},
        {"src": "templates/info.html", "id": "info.html"},
+       {"src": "templates/main.html", "id": "main.html"},
        {"src": "code_nobg.png", "id":"bg", "type": "image"}
     ]
 }

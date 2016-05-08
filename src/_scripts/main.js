@@ -32,6 +32,9 @@ function initProfile() {
 }
 
 function initMain(event) {
+  let template = queue.getResult('main.html');
+  let content = nunjucks.renderString(template);
+  $('.main-container').html(content);
   // stage.removeAllChildren();
   // stage.clear();
   // stage.canvas.width = style.width;
