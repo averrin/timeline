@@ -16,6 +16,7 @@ let timeline;
 
 function initTimeline() {
   $('.main-container').html('');
+  $('.main-container').hide();
   let data = queue.getResult('timeline.json');
   stage.removeAllChildren();
   stage.clear();
@@ -29,6 +30,7 @@ function initProfile() {
   let template = queue.getResult('profile.html');
   let content = nunjucks.renderString(template, {profile});
   $('.main-container').html(content);
+  $('.main-container').show();
 }
 
 function initMain(event) {
@@ -37,6 +39,7 @@ function initMain(event) {
   let template = queue.getResult('main.html');
   let content = nunjucks.renderString(template);
   $('.main-container').html(content);
+  $('.main-container').show();
   // stage.removeAllChildren();
   // stage.clear();
   // stage.canvas.width = style.width;
