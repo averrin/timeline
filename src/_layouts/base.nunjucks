@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{baseUrl}}styles/profile.css"/>
     {% block stylesheets %}{% endblock %}
     <link rel="stylesheet" href="{{baseUrl}}styles/main.css"/>
+    <link rel="shortcut icon" href="{{baseUrl}}/favicon.ico">
 
   </head>
   <body>
