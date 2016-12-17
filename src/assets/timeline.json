@@ -11,12 +11,22 @@
       "profiles": []
    },
    "work": [
+     {
+         "company": "Wrike",
+         "position": "Senior Developer",
+         "website": "wrike.com",
+         "startDate": "2016-10-01",
+         "endDate": null,
+         "summary": "Senior Developer",
+         "color": "#4ac963",
+         "highlights": []
+      },
       {
          "company": "Zodiac Interactive",
          "position": "Senior Developer",
          "website": "zodiac.tv",
          "startDate": "2015-01-01",
-         "endDate": null,
+         "endDate": "2016-10-01",
          "summary": "Senior Developer",
          "color": "#ffaa11",
          "highlights": []
