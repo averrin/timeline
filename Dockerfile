@@ -1,4 +1,4 @@
 
-FROM kyma/docker-nginx
-COPY . /var/www
-CMD 'nginx'
+FROM sdelrio/docker-minimal-nginx
+COPY . /usr/share/nginx/html
+CMD ["nginx", "-g", "daemon off;"]
