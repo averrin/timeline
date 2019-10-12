@@ -4,10 +4,9 @@
       "label": null,
       "picture": "https://avatars.githubusercontent.com/u/426007?v=3",
       "email": "averrin@gmail.com",
-      "skype": "averrin_nab",
-      "phone": "+79811221505",
+      "telegram": "@averrin",
       "website": "averr.in",
-      "summary": "Frontend | C++ Developer",
+      "summary": "Developer / Team Lead",
       "profiles": []
    },
    "work": [
@@ -100,12 +99,22 @@
      {
        "title": "Create GitHub account",
        "date": "2010-10-04",
-       "subtitle": "111 repos for now"
+       "subtitle": "123 repos for now"
      },
      {
        "title": "Patent",
        "date": "2013-05-10",
        "subtitle": "Country-wide Emercom System"
+     },
+     {
+       "title": "Promotion to Team Lead",
+       "date": "2019-01-01",
+       "subtitle": "Finally I agreed"
+     },
+     {
+       "title": "Relocation to Prague",
+       "date": "2019-26-10",
+       "subtitle": "Still in Wrike"
      }
    ],
    "awards": [],
